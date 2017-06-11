@@ -1,26 +1,9 @@
 module Main exposing (..)
 
-import Html exposing (..)
-import Html exposing (..)
-import Html.Events exposing (..)
+import Html exposing (program)
 import Random
-
-
-type alias NumberProblem =
-    { koreanNumber : String
-    , numeral : Int
-    }
-
-
-type alias Model =
-    { selectedProblem : Maybe NumberProblem
-    , otherProblems : List NumberProblem
-    }
-
-
-type Msg
-    = Guess Int
-    | NextProblem NumberProblem
+import Views exposing (view)
+import Types exposing (Model, Msg)
 
 
 init : ( Model, Cmd msg )
@@ -39,7 +22,6 @@ init =
                 , { koreanNumber = "여덟", numeral = 8 }
                 , { koreanNumber = "아홉", numeral = 9 }
                 , { koreanNumber = "열", numeral = 10 }
-                , { koreanNumber = "열하나", numeral = 11 }
                 ]
             }
     in
@@ -49,11 +31,6 @@ init =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     ( model, Cmd.none )
-
-
-view : Model -> Html Msg
-view model =
-    text "hello"
 
 
 subscriptions : Model -> Sub Msg
