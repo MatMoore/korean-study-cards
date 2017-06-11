@@ -69,7 +69,7 @@ init =
                 , { koreanNumber = "셋", numeral = 3 }
                 , { koreanNumber = "넷", numeral = 4 }
                 , { koreanNumber = "다섯", numeral = 5 }
-                , { koreanNumber = "여셧", numeral = 6 }
+                , { koreanNumber = "여섯", numeral = 6 }
                 , { koreanNumber = "일곱", numeral = 7 }
                 , { koreanNumber = "여덟", numeral = 8 }
                 , { koreanNumber = "아홉", numeral = 9 }

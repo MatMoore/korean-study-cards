@@ -9919,7 +9919,7 @@ var _user$project$State$init = function () {
 							_0: {koreanNumber: '다섯', numeral: 5},
 							_1: {
 								ctor: '::',
-								_0: {koreanNumber: '여셧', numeral: 6},
+								_0: {koreanNumber: '여섯', numeral: 6},
 								_1: {
 									ctor: '::',
 									_0: {koreanNumber: '일곱', numeral: 7},
