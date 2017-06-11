@@ -8,17 +8,26 @@ https://matmoore.github.io/numbers/
 
 ## Contributing
 
-The app is written in [Elm](https://guide.elm-lang.org/).
+The app is written in [Elm](https://guide.elm-lang.org/), a [functional programming language](http://blog.jenkster.com/2015/12/what-is-functional-programming.html) for the web.
 
-To run it locally, install Elm 0.18, then run `make live` from the project directory to serve it at `localhost:8000`.
+To run it locally, install Elm 0.18, then run `make live` from the project directory, then go to `localhost:8000` in your browser.
 
-These things would be great [pull requests](https://help.github.com/articles/creating-a-pull-request/):
+If you get stuck, raise an issue or pull request and let me know what went wrong.
+
+The code is organised into 
+- Types (the data model)
+- State (the behaviours)
+- Views (the user interface)
+
+See Kris Jenkins' blog post [How I structure Elm apps](http://blog.jenkster.com/2016/04/how-i-structure-elm-apps.html).
+
+These things would be great [pull requests](http://hisham.hm/2016/01/01/how-to-make-a-pull-request-on-github-a-quick-tutorial/):
 
 - Sound
-- Points
-- Numbers > 10
-- Counting particles
+- Gamification
+- Show numbers > 10
 - Translating from English -> Korean
+- Sentences with counting particles
 - Sino-Korean numbers
 - Things that aren't numbers
 
