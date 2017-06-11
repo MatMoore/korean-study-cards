@@ -18,7 +18,7 @@ These things would be great [pull requests](https://help.github.com/articles/cre
 - Points
 - Numbers > 10
 - Counting particles
-- Translating from Korean -> English
+- Translating from English -> Korean
 - Sino-Korean numbers
 - Things that aren't numbers
 
