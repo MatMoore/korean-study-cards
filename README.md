@@ -21,6 +21,8 @@ The code is organised into
 
 See Kris Jenkins' blog post [How I structure Elm apps](http://blog.jenkster.com/2016/04/how-i-structure-elm-apps.html).
 
+I'm using the [Materialize](http://materializecss.com/) CSS framework for the UI components.
+
 These things would be great [pull requests](http://hisham.hm/2016/01/01/how-to-make-a-pull-request-on-github-a-quick-tutorial/):
 
 - Let the user hear each number in Korean
