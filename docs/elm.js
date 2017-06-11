@@ -9468,7 +9468,7 @@ var _user$project$Views$cardView = F2(
 					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('card-content white-text'),
+						_0: _elm_lang$html$Html_Attributes$class('card-content white-text center-align'),
 						_1: {ctor: '[]'}
 					},
 					cardContents),
@@ -9478,7 +9478,7 @@ var _user$project$Views$cardView = F2(
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('card-action button-grid'),
+							_0: _elm_lang$html$Html_Attributes$class('card-action button-grid blue lighten-3'),
 							_1: {ctor: '[]'}
 						},
 						cardActions),

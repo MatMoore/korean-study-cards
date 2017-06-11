@@ -99,8 +99,8 @@ buttonRowView buttons =
 cardView : List (Html Msg) -> List (Html Msg) -> Html Msg
 cardView cardContents cardActions =
     div [ class "card blue-grey darken-1" ]
-        [ div [ class "card-content white-text" ] cardContents
-        , div [ class "card-action button-grid" ] cardActions
+        [ div [ class "card-content white-text center-align" ] cardContents
+        , div [ class "card-action button-grid blue lighten-3" ] cardActions
         ]
 
 
