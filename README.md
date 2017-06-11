@@ -6,7 +6,11 @@ Numbers helps you practice numbers up to 10 in Korean!
 
 https://matmoore.github.io/numbers/
 
-## Not implemented
+## Contributing
+
+The app is written in [Elm](https://guide.elm-lang.org/).
+
+To run it locally, install Elm 0.18, then run `make live` from the project directory to serve it at `localhost:8000`.
 
 These things would be great [pull requests](https://help.github.com/articles/creating-a-pull-request/):
 
