@@ -11,6 +11,7 @@ https://matmoore.github.io/numbers/
 These things would be great [pull requests](https://help.github.com/articles/creating-a-pull-request/):
 
 - Sound
+- Points
 - Numbers > 10
 - Counting particles
 - Translating from Korean -> English
