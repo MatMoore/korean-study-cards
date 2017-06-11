@@ -31,7 +31,7 @@ These things would be great [pull requests](http://hisham.hm/2016/01/01/how-to-m
 - Some kind of gamification
 - Add full sentences with counting particles
 - Add Sino-Korean numbers (Korean has two number systems; I only implemented the pure Korean numbers)
-- Add Things that aren't numbers
+- Add things that aren't numbers
 
 ## Licence
 
