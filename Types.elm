@@ -16,4 +16,5 @@ type alias Model =
 
 type Msg
     = Guess Int
+    | PickNew
     | NextProblem ( Maybe NumberProblem, List NumberProblem )

@@ -1,8 +1,19 @@
 module State exposing (init, update, subscriptions)
 
 import Random exposing (Generator, generate)
-import Types exposing (Model, Msg(NextProblem, Guess), NumberProblem)
+import Types exposing (Model, Msg(NextProblem, Guess, PickNew), NumberProblem)
 import Random.List exposing (choose)
+import Delay exposing (after)
+import Maybe.Extra exposing (toList)
+
+
+{-| Has a correct guess been made?
+    Returns False if the user didn't guess yet, or they guesssed incorrectly.
+-}
+correctGuess : Model -> Bool
+correctGuess model =
+    (model.guess /= Nothing)
+        && (model.guess == Maybe.map .numeral model.selectedProblem)
 
 
 generateNext : Model -> Cmd Msg
@@ -14,11 +25,30 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NextProblem ( selectedProblem, otherProblems ) ->
-            ( { model | selectedProblem = selectedProblem, otherProblems = otherProblems, guess = Nothing }, Cmd.none )
+            ( { model
+                | selectedProblem = selectedProblem
+                , otherProblems = (toList model.selectedProblem) ++ otherProblems
+                , guess = Nothing
+              }
+            , Cmd.none
+            )
+
+        PickNew ->
+            ( model, generateNext model )
 
         Guess numeral ->
             if model.guess == Nothing then
-                ( { model | guess = Just numeral }, Cmd.none )
+                let
+                    newModel =
+                        { model | guess = Just numeral }
+
+                    delayTime =
+                        if (correctGuess newModel) then
+                            100
+                        else
+                            2000
+                in
+                    ( newModel, Delay.after delayTime PickNew )
             else
                 ( model, Cmd.none )
 
