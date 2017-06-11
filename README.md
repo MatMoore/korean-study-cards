@@ -23,13 +23,13 @@ See Kris Jenkins' blog post [How I structure Elm apps](http://blog.jenkster.com/
 
 These things would be great [pull requests](http://hisham.hm/2016/01/01/how-to-make-a-pull-request-on-github-a-quick-tutorial/):
 
-- Sound
-- Gamification
-- Show numbers > 10
-- Translating from English -> Korean
-- Sentences with counting particles
-- Sino-Korean numbers
-- Things that aren't numbers
+- Let the user hear each number in Korean
+- Add numbers > 10
+- Translate from English -> Korean instead of just Korean -> English
+- Some kind of gamification
+- Add full sentences with counting particles
+- Add Sino-Korean numbers (Korean has two number systems; I only implemented the pure Korean numbers)
+- Add Things that aren't numbers
 
 ## Licence
 
