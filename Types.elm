@@ -10,9 +10,10 @@ type alias NumberProblem =
 type alias Model =
     { selectedProblem : Maybe NumberProblem
     , otherProblems : List NumberProblem
+    , guess : Maybe Int
     }
 
 
 type Msg
     = Guess Int
-    | NextProblem NumberProblem
+    | NextProblem ( Maybe NumberProblem, List NumberProblem )
