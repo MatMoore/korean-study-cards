@@ -1,6 +1,6 @@
 # Numbers
 
-Numbers helps you practice numbers up to 10 in Korean! Woop woop!
+Numbers helps you practice numbers up to 10 in Korean!
 
 하나 - 둘 - 셋 - 넷 - 다섯 - 여섯 - 일곱 - 여덟 - 아홉 - 열 🚀
 
