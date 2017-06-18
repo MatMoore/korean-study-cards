@@ -9890,6 +9890,104 @@ var _user$project$Views$NumberCard = F2(
 		return {question: a, buttonRows: b};
 	});
 
+var _user$project$State$sinoKoreanNumbers = {
+	ctor: '::',
+	_0: {koreanNumber: '일', numeral: 1},
+	_1: {
+		ctor: '::',
+		_0: {koreanNumber: '이', numeral: 2},
+		_1: {
+			ctor: '::',
+			_0: {koreanNumber: '삼', numeral: 3},
+			_1: {
+				ctor: '::',
+				_0: {koreanNumber: '사', numeral: 4},
+				_1: {
+					ctor: '::',
+					_0: {koreanNumber: '오', numeral: 5},
+					_1: {
+						ctor: '::',
+						_0: {koreanNumber: '육', numeral: 6},
+						_1: {
+							ctor: '::',
+							_0: {koreanNumber: '칠', numeral: 7},
+							_1: {
+								ctor: '::',
+								_0: {koreanNumber: '팔', numeral: 8},
+								_1: {
+									ctor: '::',
+									_0: {koreanNumber: '구', numeral: 9},
+									_1: {
+										ctor: '::',
+										_0: {koreanNumber: '십', numeral: 10},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$State$koreanNumbers = {
+	ctor: '::',
+	_0: {koreanNumber: '하나', numeral: 1},
+	_1: {
+		ctor: '::',
+		_0: {koreanNumber: '둘', numeral: 2},
+		_1: {
+			ctor: '::',
+			_0: {koreanNumber: '셋', numeral: 3},
+			_1: {
+				ctor: '::',
+				_0: {koreanNumber: '넷', numeral: 4},
+				_1: {
+					ctor: '::',
+					_0: {koreanNumber: '다섯', numeral: 5},
+					_1: {
+						ctor: '::',
+						_0: {koreanNumber: '여섯', numeral: 6},
+						_1: {
+							ctor: '::',
+							_0: {koreanNumber: '일곱', numeral: 7},
+							_1: {
+								ctor: '::',
+								_0: {koreanNumber: '여덟', numeral: 8},
+								_1: {
+									ctor: '::',
+									_0: {koreanNumber: '아홉', numeral: 9},
+									_1: {
+										ctor: '::',
+										_0: {koreanNumber: '열', numeral: 10},
+										_1: {
+											ctor: '::',
+											_0: {koreanNumber: '열하나', numeral: 11},
+											_1: {
+												ctor: '::',
+												_0: {koreanNumber: '열둘', numeral: 12},
+												_1: {
+													ctor: '::',
+													_0: {koreanNumber: '열셋', numeral: 13},
+													_1: {
+														ctor: '::',
+														_0: {koreanNumber: '스물', numeral: 20},
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
 var _user$project$State$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
@@ -9902,47 +10000,7 @@ var _user$project$State$generateNext = function (model) {
 var _user$project$State$init = function () {
 	var model = {
 		selectedProblem: _elm_lang$core$Maybe$Nothing,
-		otherProblems: {
-			ctor: '::',
-			_0: {koreanNumber: '하나', numeral: 1},
-			_1: {
-				ctor: '::',
-				_0: {koreanNumber: '둘', numeral: 2},
-				_1: {
-					ctor: '::',
-					_0: {koreanNumber: '셋', numeral: 3},
-					_1: {
-						ctor: '::',
-						_0: {koreanNumber: '넷', numeral: 4},
-						_1: {
-							ctor: '::',
-							_0: {koreanNumber: '다섯', numeral: 5},
-							_1: {
-								ctor: '::',
-								_0: {koreanNumber: '여섯', numeral: 6},
-								_1: {
-									ctor: '::',
-									_0: {koreanNumber: '일곱', numeral: 7},
-									_1: {
-										ctor: '::',
-										_0: {koreanNumber: '여덟', numeral: 8},
-										_1: {
-											ctor: '::',
-											_0: {koreanNumber: '아홉', numeral: 9},
-											_1: {
-												ctor: '::',
-												_0: {koreanNumber: '열', numeral: 10},
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
+		otherProblems: A2(_elm_lang$core$Basics_ops['++'], _user$project$State$koreanNumbers, _user$project$State$sinoKoreanNumbers),
 		guess: _elm_lang$core$Maybe$Nothing
 	};
 	return {

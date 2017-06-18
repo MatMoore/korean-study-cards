@@ -26,11 +26,10 @@ I'm using the [Materialize](http://materializecss.com/) CSS framework for the UI
 These things would be great [pull requests](http://hisham.hm/2016/01/01/how-to-make-a-pull-request-on-github-a-quick-tutorial/):
 
 - Let the user hear each number in Korean
-- Add numbers > 10
+- Add more numbers
 - Translate from English -> Korean instead of just Korean -> English
 - Some kind of gamification
 - Add full sentences with counting particles
-- Add Sino-Korean numbers (Korean has two number systems; I only implemented the pure Korean numbers)
 - Add things that aren't numbers
 
 ## Licence
