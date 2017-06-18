@@ -70,10 +70,6 @@ koreanNumbers =
     , { koreanNumber = "여덟", numeral = 8 }
     , { koreanNumber = "아홉", numeral = 9 }
     , { koreanNumber = "열", numeral = 10 }
-    , { koreanNumber = "열하나", numeral = 11 }
-    , { koreanNumber = "열둘", numeral = 12 }
-    , { koreanNumber = "열셋", numeral = 13 }
-    , { koreanNumber = "스물", numeral = 20 }
     ]
 
 

@@ -9961,23 +9961,7 @@ var _user$project$State$koreanNumbers = {
 									_1: {
 										ctor: '::',
 										_0: {koreanNumber: '열', numeral: 10},
-										_1: {
-											ctor: '::',
-											_0: {koreanNumber: '열하나', numeral: 11},
-											_1: {
-												ctor: '::',
-												_0: {koreanNumber: '열둘', numeral: 12},
-												_1: {
-													ctor: '::',
-													_0: {koreanNumber: '열셋', numeral: 13},
-													_1: {
-														ctor: '::',
-														_0: {koreanNumber: '스물', numeral: 20},
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										}
+										_1: {ctor: '[]'}
 									}
 								}
 							}
