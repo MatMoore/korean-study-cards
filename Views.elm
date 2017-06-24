@@ -1,9 +1,10 @@
 module Views exposing (view)
 
-import Types exposing (Model, Msg(Guess), NumberProblem)
+import Types exposing (Model, Msg(Guess, SelectProblemSet), ProblemSet, NumberProblem)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Dict
 
 
 type alias Button =
@@ -123,6 +124,47 @@ numberCardView card =
 
 view : Model -> Html Msg
 view model =
+    div
+        []
+        [ viewProblem model, viewMenu model ]
+
+
+buttonForProblemSet : String -> ( String, ProblemSet ) -> Html Msg
+buttonForProblemSet selectedId ( problemSetId, problemSet ) =
+    let
+        isChecked =
+            selectedId == problemSetId
+
+        extraAttrs =
+            if isChecked then
+                [ checked True ]
+            else
+                []
+
+        attrs =
+            [ name "problem-set", id problemSetId, type_ "radio", onClick (SelectProblemSet problemSetId), class "waves-effect waves-light btn" ]
+                ++ extraAttrs
+    in
+        p []
+            [ input
+                attrs
+                []
+            , label [ for problemSetId ] [ text problemSet.name ]
+            ]
+
+
+viewMenu : Model -> Html Msg
+viewMenu model =
+    Html.form
+        [ action "#" ]
+        (List.map
+            (buttonForProblemSet model.selectedProblemSet)
+            (Dict.toList model.allProblemSets)
+        )
+
+
+viewProblem : Model -> Html Msg
+viewProblem model =
     case model.selectedProblem of
         Just problem ->
             numberCardView (numberCard model.guess problem)

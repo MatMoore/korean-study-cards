@@ -9682,18 +9682,100 @@ var _user$project$Types$NumberProblem = F2(
 	function (a, b) {
 		return {koreanNumber: a, numeral: b};
 	});
-var _user$project$Types$Model = F3(
-	function (a, b, c) {
-		return {selectedProblem: a, otherProblems: b, guess: c};
+var _user$project$Types$ProblemSet = F2(
+	function (a, b) {
+		return {problems: a, name: b};
+	});
+var _user$project$Types$Model = F5(
+	function (a, b, c, d, e) {
+		return {selectedProblemSet: a, selectedProblem: b, otherProblems: c, allProblemSets: d, guess: e};
 	});
 var _user$project$Types$NextProblem = function (a) {
 	return {ctor: 'NextProblem', _0: a};
+};
+var _user$project$Types$SelectProblemSet = function (a) {
+	return {ctor: 'SelectProblemSet', _0: a};
 };
 var _user$project$Types$PickNew = {ctor: 'PickNew'};
 var _user$project$Types$Guess = function (a) {
 	return {ctor: 'Guess', _0: a};
 };
 
+var _user$project$Views$buttonForProblemSet = F2(
+	function (selectedId, _p0) {
+		var _p1 = _p0;
+		var _p2 = _p1._0;
+		var isChecked = _elm_lang$core$Native_Utils.eq(selectedId, _p2);
+		var extraAttrs = isChecked ? {
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$checked(true),
+			_1: {ctor: '[]'}
+		} : {ctor: '[]'};
+		var attrs = A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$name('problem-set'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$id(_p2),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$type_('radio'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(
+								_user$project$Types$SelectProblemSet(_p2)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('waves-effect waves-light btn'),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			},
+			extraAttrs);
+		return A2(
+			_elm_lang$html$Html$p,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$input,
+					attrs,
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$label,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$for(_p2),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(_p1._1.name),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _user$project$Views$viewMenu = function (model) {
+	return A2(
+		_elm_lang$html$Html$form,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$action('#'),
+			_1: {ctor: '[]'}
+		},
+		A2(
+			_elm_lang$core$List$map,
+			_user$project$Views$buttonForProblemSet(model.selectedProblemSet),
+			_elm_lang$core$Dict$toList(model.allProblemSets)));
+};
 var _user$project$Views$noChildNodes = _elm_lang$html$Html$text('');
 var _user$project$Views$reallyBig = function (str) {
 	return A2(
@@ -9868,11 +9950,11 @@ var _user$project$Views$numberCard = F2(
 			}
 		};
 	});
-var _user$project$Views$view = function (model) {
-	var _p0 = model.selectedProblem;
-	if (_p0.ctor === 'Just') {
+var _user$project$Views$viewProblem = function (model) {
+	var _p3 = model.selectedProblem;
+	if (_p3.ctor === 'Just') {
 		return _user$project$Views$numberCardView(
-			A2(_user$project$Views$numberCard, model.guess, _p0._0));
+			A2(_user$project$Views$numberCard, model.guess, _p3._0));
 	} else {
 		return _user$project$Views$numberCardView(
 			{
@@ -9880,6 +9962,20 @@ var _user$project$Views$view = function (model) {
 				buttonRows: {ctor: '[]'}
 			});
 	}
+};
+var _user$project$Views$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _user$project$Views$viewProblem(model),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Views$viewMenu(model),
+				_1: {ctor: '[]'}
+			}
+		});
 };
 var _user$project$Views$Button = F4(
 	function (a, b, c, d) {
@@ -9891,36 +9987,39 @@ var _user$project$Views$NumberCard = F2(
 	});
 
 var _user$project$State$sinoKoreanNumbers = {
-	ctor: '::',
-	_0: {koreanNumber: '일', numeral: 1},
-	_1: {
+	name: 'Sino-Korean numbers 1-10',
+	problems: {
 		ctor: '::',
-		_0: {koreanNumber: '이', numeral: 2},
+		_0: {koreanNumber: '일', numeral: 1},
 		_1: {
 			ctor: '::',
-			_0: {koreanNumber: '삼', numeral: 3},
+			_0: {koreanNumber: '이', numeral: 2},
 			_1: {
 				ctor: '::',
-				_0: {koreanNumber: '사', numeral: 4},
+				_0: {koreanNumber: '삼', numeral: 3},
 				_1: {
 					ctor: '::',
-					_0: {koreanNumber: '오', numeral: 5},
+					_0: {koreanNumber: '사', numeral: 4},
 					_1: {
 						ctor: '::',
-						_0: {koreanNumber: '육', numeral: 6},
+						_0: {koreanNumber: '오', numeral: 5},
 						_1: {
 							ctor: '::',
-							_0: {koreanNumber: '칠', numeral: 7},
+							_0: {koreanNumber: '육', numeral: 6},
 							_1: {
 								ctor: '::',
-								_0: {koreanNumber: '팔', numeral: 8},
+								_0: {koreanNumber: '칠', numeral: 7},
 								_1: {
 									ctor: '::',
-									_0: {koreanNumber: '구', numeral: 9},
+									_0: {koreanNumber: '팔', numeral: 8},
 									_1: {
 										ctor: '::',
-										_0: {koreanNumber: '십', numeral: 10},
-										_1: {ctor: '[]'}
+										_0: {koreanNumber: '구', numeral: 9},
+										_1: {
+											ctor: '::',
+											_0: {koreanNumber: '십', numeral: 10},
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}
@@ -9932,36 +10031,39 @@ var _user$project$State$sinoKoreanNumbers = {
 	}
 };
 var _user$project$State$koreanNumbers = {
-	ctor: '::',
-	_0: {koreanNumber: '하나', numeral: 1},
-	_1: {
+	name: 'Korean numbers 1-10',
+	problems: {
 		ctor: '::',
-		_0: {koreanNumber: '둘', numeral: 2},
+		_0: {koreanNumber: '하나', numeral: 1},
 		_1: {
 			ctor: '::',
-			_0: {koreanNumber: '셋', numeral: 3},
+			_0: {koreanNumber: '둘', numeral: 2},
 			_1: {
 				ctor: '::',
-				_0: {koreanNumber: '넷', numeral: 4},
+				_0: {koreanNumber: '셋', numeral: 3},
 				_1: {
 					ctor: '::',
-					_0: {koreanNumber: '다섯', numeral: 5},
+					_0: {koreanNumber: '넷', numeral: 4},
 					_1: {
 						ctor: '::',
-						_0: {koreanNumber: '여섯', numeral: 6},
+						_0: {koreanNumber: '다섯', numeral: 5},
 						_1: {
 							ctor: '::',
-							_0: {koreanNumber: '일곱', numeral: 7},
+							_0: {koreanNumber: '여섯', numeral: 6},
 							_1: {
 								ctor: '::',
-								_0: {koreanNumber: '여덟', numeral: 8},
+								_0: {koreanNumber: '일곱', numeral: 7},
 								_1: {
 									ctor: '::',
-									_0: {koreanNumber: '아홉', numeral: 9},
+									_0: {koreanNumber: '여덟', numeral: 8},
 									_1: {
 										ctor: '::',
-										_0: {koreanNumber: '열', numeral: 10},
-										_1: {ctor: '[]'}
+										_0: {koreanNumber: '아홉', numeral: 9},
+										_1: {
+											ctor: '::',
+											_0: {koreanNumber: '열', numeral: 10},
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}
@@ -9983,9 +10085,20 @@ var _user$project$State$generateNext = function (model) {
 };
 var _user$project$State$init = function () {
 	var model = {
+		selectedProblemSet: 'korean',
+		guess: _elm_lang$core$Maybe$Nothing,
+		allProblemSets: _elm_lang$core$Dict$fromList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'korean', _1: _user$project$State$koreanNumbers},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'sino-korean', _1: _user$project$State$sinoKoreanNumbers},
+					_1: {ctor: '[]'}
+				}
+			}),
 		selectedProblem: _elm_lang$core$Maybe$Nothing,
-		otherProblems: A2(_elm_lang$core$Basics_ops['++'], _user$project$State$koreanNumbers, _user$project$State$sinoKoreanNumbers),
-		guess: _elm_lang$core$Maybe$Nothing
+		otherProblems: _user$project$State$koreanNumbers.problems
 	};
 	return {
 		ctor: '_Tuple2',
@@ -10022,6 +10135,21 @@ var _user$project$State$update = F2(
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
+			case 'SelectProblemSet':
+				var _p2 = _p0._0;
+				var _p1 = A2(_elm_lang$core$Dict$get, _p2, model.allProblemSets);
+				if (_p1.ctor === 'Just') {
+					var newModel = _elm_lang$core$Native_Utils.update(
+						model,
+						{otherProblems: _p1._0.problems, selectedProblem: _elm_lang$core$Maybe$Nothing, selectedProblemSet: _p2});
+					return {
+						ctor: '_Tuple2',
+						_0: newModel,
+						_1: _user$project$State$generateNext(newModel)
+					};
+				} else {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
 			case 'PickNew':
 				return {
 					ctor: '_Tuple2',

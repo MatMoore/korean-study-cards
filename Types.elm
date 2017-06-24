@@ -1,5 +1,7 @@
 module Types exposing (..)
 
+import Dict exposing (Dict)
+
 
 type alias NumberProblem =
     { koreanNumber : String
@@ -7,9 +9,21 @@ type alias NumberProblem =
     }
 
 
+type alias ProblemSet =
+    { problems : List NumberProblem
+    , name : String
+    }
+
+
+type alias ProblemSetMenu =
+    Dict String ProblemSet
+
+
 type alias Model =
-    { selectedProblem : Maybe NumberProblem
+    { selectedProblemSet : String
+    , selectedProblem : Maybe NumberProblem
     , otherProblems : List NumberProblem
+    , allProblemSets : ProblemSetMenu
     , guess : Maybe Int
     }
 
@@ -17,4 +31,5 @@ type alias Model =
 type Msg
     = Guess Int
     | PickNew
+    | SelectProblemSet String
     | NextProblem ( Maybe NumberProblem, List NumberProblem )
