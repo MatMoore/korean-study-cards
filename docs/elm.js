@@ -9903,6 +9903,23 @@ var _user$project$Views$numberCardView = function (card) {
 			},
 			A2(_elm_lang$core$List$map, _user$project$Views$buttonRowView, card.buttonRows)));
 };
+var _user$project$Views$chunks = F2(
+	function (maxLength, list) {
+		return (_elm_lang$core$Native_Utils.eq(maxLength, 0) || _elm_lang$core$Native_Utils.eq(
+			list,
+			{ctor: '[]'})) ? {
+			ctor: '::',
+			_0: list,
+			_1: {ctor: '[]'}
+		} : {
+			ctor: '::',
+			_0: A2(_elm_lang$core$List$take, maxLength, list),
+			_1: A2(
+				_user$project$Views$chunks,
+				maxLength,
+				A2(_elm_lang$core$List$drop, maxLength, list))
+		};
+	});
 var _user$project$Views$button = F3(
 	function (maybeGuess, answer, numeral) {
 		var markIncorrect = _elm_lang$core$Native_Utils.eq(
@@ -9914,47 +9931,30 @@ var _user$project$Views$button = F3(
 		var markRealAnswer = (!_elm_lang$core$Native_Utils.eq(maybeGuess, _elm_lang$core$Maybe$Nothing)) && ((!markCorrect) && _elm_lang$core$Native_Utils.eq(answer, numeral));
 		return {numeral: numeral, markCorrect: markCorrect, markIncorrect: markIncorrect, markRealAnswer: markRealAnswer};
 	});
-var _user$project$Views$numberCard = F2(
-	function (maybeGuess, numberProblem) {
-		return {
-			question: numberProblem.koreanNumber,
-			buttonRows: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$core$List$map,
-					A2(_user$project$Views$button, maybeGuess, numberProblem.numeral),
-					A2(_elm_lang$core$List$range, 1, 3)),
-				_1: {
+var _user$project$Views$numberCard = F3(
+	function (maybeGuess, numberProblem, otherProblems) {
+		var allAnswers = A2(
+			_elm_lang$core$List$map,
+			A2(_user$project$Views$button, maybeGuess, numberProblem.numeral),
+			_elm_lang$core$List$sort(
+				{
 					ctor: '::',
-					_0: A2(
+					_0: numberProblem.numeral,
+					_1: A2(
 						_elm_lang$core$List$map,
-						A2(_user$project$Views$button, maybeGuess, numberProblem.numeral),
-						A2(_elm_lang$core$List$range, 4, 6)),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$core$List$map,
-							A2(_user$project$Views$button, maybeGuess, numberProblem.numeral),
-							A2(_elm_lang$core$List$range, 7, 9)),
-						_1: {
-							ctor: '::',
-							_0: {
-								ctor: '::',
-								_0: A3(_user$project$Views$button, maybeGuess, numberProblem.numeral, 10),
-								_1: {ctor: '[]'}
-							},
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			}
-		};
+						function (_) {
+							return _.numeral;
+						},
+						otherProblems)
+				}));
+		var buttonRows = A2(_user$project$Views$chunks, 3, allAnswers);
+		return {question: numberProblem.koreanNumber, buttonRows: buttonRows};
 	});
 var _user$project$Views$viewProblem = function (model) {
 	var _p3 = model.selectedProblem;
 	if (_p3.ctor === 'Just') {
 		return _user$project$Views$numberCardView(
-			A2(_user$project$Views$numberCard, model.guess, _p3._0));
+			A3(_user$project$Views$numberCard, model.guess, _p3._0, model.otherProblems));
 	} else {
 		return _user$project$Views$numberCardView(
 			{
@@ -10030,6 +10030,46 @@ var _user$project$State$sinoKoreanNumbers = {
 		}
 	}
 };
+var _user$project$State$koreanNumbers20_100 = {
+	name: 'Korean numbers 20-100',
+	problems: {
+		ctor: '::',
+		_0: {koreanNumber: '스물', numeral: 20},
+		_1: {
+			ctor: '::',
+			_0: {koreanNumber: '서른', numeral: 30},
+			_1: {
+				ctor: '::',
+				_0: {koreanNumber: '마흔', numeral: 40},
+				_1: {
+					ctor: '::',
+					_0: {koreanNumber: '쉰', numeral: 50},
+					_1: {
+						ctor: '::',
+						_0: {koreanNumber: '예순', numeral: 60},
+						_1: {
+							ctor: '::',
+							_0: {koreanNumber: '일흔', numeral: 70},
+							_1: {
+								ctor: '::',
+								_0: {koreanNumber: '여든', numeral: 80},
+								_1: {
+									ctor: '::',
+									_0: {koreanNumber: '아흔', numeral: 90},
+									_1: {
+										ctor: '::',
+										_0: {koreanNumber: '온', numeral: 100},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
 var _user$project$State$koreanNumbers = {
 	name: 'Korean numbers 1-10',
 	problems: {
@@ -10093,8 +10133,12 @@ var _user$project$State$init = function () {
 				_0: {ctor: '_Tuple2', _0: 'korean', _1: _user$project$State$koreanNumbers},
 				_1: {
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'sino-korean', _1: _user$project$State$sinoKoreanNumbers},
-					_1: {ctor: '[]'}
+					_0: {ctor: '_Tuple2', _0: 'korean20-100', _1: _user$project$State$koreanNumbers20_100},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'sino-korean', _1: _user$project$State$sinoKoreanNumbers},
+						_1: {ctor: '[]'}
+					}
 				}
 			}),
 		selectedProblem: _elm_lang$core$Maybe$Nothing,

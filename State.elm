@@ -90,6 +90,23 @@ koreanNumbers =
     }
 
 
+koreanNumbers20_100 : ProblemSet
+koreanNumbers20_100 =
+    { name = "Korean numbers 20-100"
+    , problems =
+        [ { koreanNumber = "스물", numeral = 20 }
+        , { koreanNumber = "서른", numeral = 30 }
+        , { koreanNumber = "마흔", numeral = 40 }
+        , { koreanNumber = "쉰", numeral = 50 }
+        , { koreanNumber = "예순", numeral = 60 }
+        , { koreanNumber = "일흔", numeral = 70 }
+        , { koreanNumber = "여든", numeral = 80 }
+        , { koreanNumber = "아흔", numeral = 90 }
+        , { koreanNumber = "온", numeral = 100 }
+        ]
+    }
+
+
 sinoKoreanNumbers : ProblemSet
 sinoKoreanNumbers =
     { name = "Sino-Korean numbers 1-10"
@@ -115,7 +132,7 @@ init =
             { selectedProblemSet = "korean"
             , guess = Nothing
             , allProblemSets =
-                Dict.fromList [ ( "korean", koreanNumbers ), ( "sino-korean", sinoKoreanNumbers ) ]
+                Dict.fromList [ ( "korean", koreanNumbers ), ( "korean20-100", koreanNumbers20_100 ), ( "sino-korean", sinoKoreanNumbers ) ]
             , selectedProblem = Nothing
             , otherProblems = koreanNumbers.problems
             }

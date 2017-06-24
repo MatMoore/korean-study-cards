@@ -40,16 +40,26 @@ button maybeGuess answer numeral =
         }
 
 
-numberCard : Maybe Int -> NumberProblem -> NumberCard
-numberCard maybeGuess numberProblem =
-    { question = numberProblem.koreanNumber
-    , buttonRows =
-        [ List.range 1 3 |> List.map (button maybeGuess numberProblem.numeral)
-        , List.range 4 6 |> List.map (button maybeGuess numberProblem.numeral)
-        , List.range 7 9 |> List.map (button maybeGuess numberProblem.numeral)
-        , [ button maybeGuess numberProblem.numeral 10 ]
-        ]
-    }
+chunks : Int -> List a -> List (List a)
+chunks maxLength list =
+    if (maxLength == 0) || (list == []) then
+        [ list ]
+    else
+        (List.take maxLength list) :: (List.drop maxLength list |> chunks maxLength)
+
+
+numberCard : Maybe Int -> NumberProblem -> List NumberProblem -> NumberCard
+numberCard maybeGuess numberProblem otherProblems =
+    let
+        allAnswers =
+            numberProblem.numeral :: List.map (.numeral) otherProblems |> List.sort |> List.map (button maybeGuess numberProblem.numeral)
+
+        buttonRows =
+            chunks 3 allAnswers
+    in
+        { question = numberProblem.koreanNumber
+        , buttonRows = buttonRows
+        }
 
 
 wrapColumn12 : Html Msg -> Html Msg
@@ -167,7 +177,7 @@ viewProblem : Model -> Html Msg
 viewProblem model =
     case model.selectedProblem of
         Just problem ->
-            numberCardView (numberCard model.guess problem)
+            numberCardView (numberCard model.guess problem model.otherProblems)
 
         Nothing ->
             numberCardView { question = "Loading...", buttonRows = [] }
