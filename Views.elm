@@ -180,7 +180,7 @@ viewMenu model =
         [ action "#" ]
         (List.map
             (buttonForProblemSet model.selectedProblemSet)
-            (Dict.toList model.allProblemSets)
+            (model.allProblemSets)
         )
 
 

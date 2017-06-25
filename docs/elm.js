@@ -9774,7 +9774,7 @@ var _user$project$Views$viewMenu = function (model) {
 		A2(
 			_elm_lang$core$List$map,
 			_user$project$Views$buttonForProblemSet(model.selectedProblemSet),
-			_elm_lang$core$Dict$toList(model.allProblemSets)));
+			model.allProblemSets));
 };
 var _user$project$Views$noChildNodes = _elm_lang$html$Html$text('');
 var _user$project$Views$reallyBig = function (str) {
@@ -9994,6 +9994,114 @@ var _user$project$Views$NumberCard = F2(
 		return {question: a, buttonRows: b};
 	});
 
+var _user$project$State$places2 = {
+	name: 'Places II',
+	problems: {
+		ctor: '::',
+		_0: {question: '서점', answer: 'bookshop'},
+		_1: {
+			ctor: '::',
+			_0: {question: '대학교', answer: 'university'},
+			_1: {
+				ctor: '::',
+				_0: {question: '대사관', answer: 'embassy'},
+				_1: {
+					ctor: '::',
+					_0: {question: '도서관', answer: 'library'},
+					_1: {
+						ctor: '::',
+						_0: {question: '약국', answer: 'pharmacy'},
+						_1: {
+							ctor: '::',
+							_0: {question: '우체국', answer: 'post office'},
+							_1: {
+								ctor: '::',
+								_0: {question: '회사', answer: 'company'},
+								_1: {
+									ctor: '::',
+									_0: {question: '슈퍼마켓', answer: 'supermarket'},
+									_1: {
+										ctor: '::',
+										_0: {question: '극장', answer: 'cinema'},
+										_1: {
+											ctor: '::',
+											_0: {question: '문구점', answer: 'stationary shop'},
+											_1: {
+												ctor: '::',
+												_0: {question: '집', answer: 'house'},
+												_1: {
+													ctor: '::',
+													_0: {question: '사무실', answer: 'office'},
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$State$places1 = {
+	name: 'Places I',
+	problems: {
+		ctor: '::',
+		_0: {question: '방', answer: 'room'},
+		_1: {
+			ctor: '::',
+			_0: {question: '책방', answer: 'bookshop'},
+			_1: {
+				ctor: '::',
+				_0: {question: '공항', answer: 'airport'},
+				_1: {
+					ctor: '::',
+					_0: {question: '기차역', answer: 'train station'},
+					_1: {
+						ctor: '::',
+						_0: {question: '지하철역', answer: 'underground station'},
+						_1: {
+							ctor: '::',
+							_0: {question: '병원', answer: 'hospital'},
+							_1: {
+								ctor: '::',
+								_0: {question: '식당', answer: 'restaurant'},
+								_1: {
+									ctor: '::',
+									_0: {question: '화장실', answer: 'restroom'},
+									_1: {
+										ctor: '::',
+										_0: {question: '백화점', answer: 'department store'},
+										_1: {
+											ctor: '::',
+											_0: {question: '호텔', answer: 'hotel'},
+											_1: {
+												ctor: '::',
+												_0: {question: '커피숍', answer: 'coffee shop'},
+												_1: {
+													ctor: '::',
+													_0: {question: '공원', answer: 'park'},
+													_1: {
+														ctor: '::',
+														_0: {question: '은행', answer: 'bank'},
+														_1: {ctor: '[]'}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
 var _user$project$State$sinoquestions = {
 	name: 'Sino-Korean numbers 1-10',
 	problems: {
@@ -10135,20 +10243,27 @@ var _user$project$State$init = function () {
 	var model = {
 		selectedProblemSet: 'korean',
 		guess: _elm_lang$core$Maybe$Nothing,
-		allProblemSets: _elm_lang$core$Dict$fromList(
-			{
+		allProblemSets: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'korean', _1: _user$project$State$questions},
+			_1: {
 				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 'korean', _1: _user$project$State$questions},
+				_0: {ctor: '_Tuple2', _0: 'korean20-100', _1: _user$project$State$questions20_100},
 				_1: {
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'korean20-100', _1: _user$project$State$questions20_100},
+					_0: {ctor: '_Tuple2', _0: 'sino-korean', _1: _user$project$State$sinoquestions},
 					_1: {
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'sino-korean', _1: _user$project$State$sinoquestions},
-						_1: {ctor: '[]'}
+						_0: {ctor: '_Tuple2', _0: 'places1', _1: _user$project$State$places1},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'places2', _1: _user$project$State$places2},
+							_1: {ctor: '[]'}
+						}
 					}
 				}
-			}),
+			}
+		},
 		selectedProblem: _elm_lang$core$Maybe$Nothing,
 		otherProblems: _user$project$State$questions.problems
 	};
@@ -10189,7 +10304,10 @@ var _user$project$State$update = F2(
 				};
 			case 'SelectProblemSet':
 				var _p2 = _p0._0;
-				var _p1 = A2(_elm_lang$core$Dict$get, _p2, model.allProblemSets);
+				var _p1 = A2(
+					_elm_lang$core$Dict$get,
+					_p2,
+					_elm_lang$core$Dict$fromList(model.allProblemSets));
 				if (_p1.ctor === 'Just') {
 					var newModel = _elm_lang$core$Native_Utils.update(
 						model,

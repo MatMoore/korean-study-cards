@@ -1,6 +1,6 @@
-# Numbers
+# Korean Study Cards
 
-Numbers helps you practice numbers up to 10 in Korean!
+This app helps you study Korean numbers and other vocabulary.
 
 하나 - 둘 - 셋 - 넷 - 다섯 - 여섯 - 일곱 - 여덟 - 아홉 - 열 🚀
 
@@ -14,7 +14,7 @@ To run it locally, install Elm 0.18, then run `make live` from the project direc
 
 If you get stuck, raise an issue or pull request and let me know what went wrong.
 
-The code is organised into 
+The code is organised into
 - Types (the data model)
 - State (the behaviours)
 - Views (the user interface)
@@ -25,27 +25,28 @@ I'm using the [Materialize](http://materializecss.com/) CSS framework for the UI
 
 These things would be great [pull requests](http://hisham.hm/2016/01/01/how-to-make-a-pull-request-on-github-a-quick-tutorial/):
 
-- Let the user hear each number in Korean
-- Add more numbers
+- Let the user hear each question/answer in Korean
+- Add more vocabulary
 - Translate from English -> Korean instead of just Korean -> English
-- Some kind of gamification
-- Add full sentences with counting particles
-- Add things that aren't numbers
+- Gamification
+- Add sentences or longer phrases (like numbers with counting particles)
+- Add fill-in-the-blank problems
+- Tests
 
 ## Licence
 
 ```
-        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
-                    Version 2, December 2004 
+        DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                    Version 2, December 2004
 
- Copyright (C) 2017 Mat Moore 
+ Copyright (C) 2017 Mat Moore
 
- Everyone is permitted to copy and distribute verbatim or modified 
- copies of this license document, and changing it is allowed as long 
- as the name is changed. 
+ Everyone is permitted to copy and distribute verbatim or modified
+ copies of this license document, and changing it is allowed as long
+ as the name is changed.
 
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
   0. You just DO WHAT THE FUCK YOU WANT TO.
 ```

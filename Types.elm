@@ -16,7 +16,7 @@ type alias ProblemSet =
 
 
 type alias ProblemSetMenu =
-    Dict String ProblemSet
+    List ( String, ProblemSet )
 
 
 type alias Model =

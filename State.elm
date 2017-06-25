@@ -36,7 +36,7 @@ update msg model =
             )
 
         SelectProblemSet problemSetId ->
-            case Dict.get problemSetId model.allProblemSets of
+            case Dict.get problemSetId (Dict.fromList model.allProblemSets) of
                 Just problemSet ->
                     let
                         newModel =
@@ -125,6 +125,47 @@ sinoquestions =
     }
 
 
+places1 : ProblemSet
+places1 =
+    { name = "Places I"
+    , problems =
+        [ { question = "방", answer = "room" }
+        , { question = "책방", answer = "bookshop" }
+        , { question = "공항", answer = "airport" }
+        , { question = "기차역", answer = "train station" }
+        , { question = "지하철역", answer = "underground station" }
+        , { question = "병원", answer = "hospital" }
+        , { question = "식당", answer = "restaurant" }
+        , { question = "화장실", answer = "restroom" }
+        , { question = "백화점", answer = "department store" }
+        , { question = "호텔", answer = "hotel" }
+        , { question = "커피숍", answer = "coffee shop" }
+        , { question = "공원", answer = "park" }
+        , { question = "은행", answer = "bank" }
+        ]
+    }
+
+
+places2 : ProblemSet
+places2 =
+    { name = "Places II"
+    , problems =
+        [ { question = "서점", answer = "bookshop" }
+        , { question = "대학교", answer = "university" }
+        , { question = "대사관", answer = "embassy" }
+        , { question = "도서관", answer = "library" }
+        , { question = "약국", answer = "pharmacy" }
+        , { question = "우체국", answer = "post office" }
+        , { question = "회사", answer = "company" }
+        , { question = "슈퍼마켓", answer = "supermarket" }
+        , { question = "극장", answer = "cinema" }
+        , { question = "문구점", answer = "stationary shop" }
+        , { question = "집", answer = "house" }
+        , { question = "사무실", answer = "office" }
+        ]
+    }
+
+
 init : ( Model, Cmd Msg )
 init =
     let
@@ -132,7 +173,12 @@ init =
             { selectedProblemSet = "korean"
             , guess = Nothing
             , allProblemSets =
-                Dict.fromList [ ( "korean", questions ), ( "korean20-100", questions20_100 ), ( "sino-korean", sinoquestions ) ]
+                [ ( "korean", questions )
+                , ( "korean20-100", questions20_100 )
+                , ( "sino-korean", sinoquestions )
+                , ( "places1", places1 )
+                , ( "places2", places2 )
+                ]
             , selectedProblem = Nothing
             , otherProblems = questions.problems
             }
