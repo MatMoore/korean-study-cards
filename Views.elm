@@ -8,7 +8,7 @@ import Dict
 
 
 type alias Button =
-    { numeral : Int
+    { buttonText : String
     , markCorrect : Bool
     , markIncorrect : Bool
     , markRealAnswer : Bool
@@ -21,19 +21,19 @@ type alias NumberCard =
     }
 
 
-button : Maybe Int -> Int -> Int -> Button
-button maybeGuess answer numeral =
+button : Maybe String -> String -> String -> Button
+button maybeGuess answer buttonText =
     let
         markCorrect =
-            (maybeGuess == Just numeral) && (answer == numeral)
+            (maybeGuess == Just buttonText) && (answer == buttonText)
 
         markIncorrect =
-            (maybeGuess == Just numeral) && (answer /= numeral)
+            (maybeGuess == Just buttonText) && (answer /= buttonText)
 
         markRealAnswer =
-            (maybeGuess /= Nothing) && (not markCorrect) && (answer == numeral)
+            (maybeGuess /= Nothing) && (not markCorrect) && (answer == buttonText)
     in
-        { numeral = numeral
+        { buttonText = buttonText
         , markCorrect = markCorrect
         , markIncorrect = markIncorrect
         , markRealAnswer = markRealAnswer
@@ -48,16 +48,27 @@ chunks maxLength list =
         (List.take maxLength list) :: (List.drop maxLength list |> chunks maxLength)
 
 
-numberCard : Maybe Int -> NumberProblem -> List NumberProblem -> NumberCard
+{-| If a string contains numbers, sort numerically, else sort lexicographically
+-}
+numberwang : String -> ( Int, String )
+numberwang str =
+    let
+        number =
+            String.toInt str |> Result.withDefault 99999
+    in
+        ( number, str )
+
+
+numberCard : Maybe String -> NumberProblem -> List NumberProblem -> NumberCard
 numberCard maybeGuess numberProblem otherProblems =
     let
         allAnswers =
-            numberProblem.numeral :: List.map (.numeral) otherProblems |> List.sort |> List.map (button maybeGuess numberProblem.numeral)
+            numberProblem.answer :: List.map (.answer) otherProblems |> List.sortBy numberwang |> List.map (button maybeGuess numberProblem.answer)
 
         buttonRows =
             chunks 3 allAnswers
     in
-        { question = numberProblem.koreanNumber
+        { question = numberProblem.question
         , buttonRows = buttonRows
         }
 
@@ -96,9 +107,9 @@ buttonView button =
         a
             [ class classValue
             , href "#"
-            , onClick (Guess button.numeral)
+            , onClick (Guess button.buttonText)
             ]
-            [ toString button.numeral |> text ]
+            [ button.buttonText |> text ]
             |> wrapColumn4
 
 

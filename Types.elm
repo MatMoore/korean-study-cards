@@ -4,8 +4,8 @@ import Dict exposing (Dict)
 
 
 type alias NumberProblem =
-    { koreanNumber : String
-    , numeral : Int
+    { question : String
+    , answer : String
     }
 
 
@@ -24,12 +24,12 @@ type alias Model =
     , selectedProblem : Maybe NumberProblem
     , otherProblems : List NumberProblem
     , allProblemSets : ProblemSetMenu
-    , guess : Maybe Int
+    , guess : Maybe String
     }
 
 
 type Msg
-    = Guess Int
+    = Guess String
     | PickNew
     | SelectProblemSet String
     | NextProblem ( Maybe NumberProblem, List NumberProblem )

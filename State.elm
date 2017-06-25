@@ -15,7 +15,7 @@ import Debug
 correctGuess : Model -> Bool
 correctGuess model =
     (model.guess /= Nothing)
-        && (model.guess == Maybe.map .numeral model.selectedProblem)
+        && (model.guess == Maybe.map .answer model.selectedProblem)
 
 
 generateNext : Model -> Cmd Msg
@@ -50,11 +50,11 @@ update msg model =
         PickNew ->
             ( model, generateNext model )
 
-        Guess numeral ->
+        Guess answer ->
             if model.guess == Nothing then
                 let
                     newModel =
-                        { model | guess = Just numeral }
+                        { model | guess = Just answer }
 
                     delayTime =
                         if (correctGuess newModel) then
@@ -72,55 +72,55 @@ subscriptions model =
     Sub.none
 
 
-koreanNumbers : ProblemSet
-koreanNumbers =
+questions : ProblemSet
+questions =
     { name = "Korean numbers 1-10"
     , problems =
-        [ { koreanNumber = "하나", numeral = 1 }
-        , { koreanNumber = "둘", numeral = 2 }
-        , { koreanNumber = "셋", numeral = 3 }
-        , { koreanNumber = "넷", numeral = 4 }
-        , { koreanNumber = "다섯", numeral = 5 }
-        , { koreanNumber = "여섯", numeral = 6 }
-        , { koreanNumber = "일곱", numeral = 7 }
-        , { koreanNumber = "여덟", numeral = 8 }
-        , { koreanNumber = "아홉", numeral = 9 }
-        , { koreanNumber = "열", numeral = 10 }
+        [ { question = "하나", answer = "1" }
+        , { question = "둘", answer = "2" }
+        , { question = "셋", answer = "3" }
+        , { question = "넷", answer = "4" }
+        , { question = "다섯", answer = "5" }
+        , { question = "여섯", answer = "6" }
+        , { question = "일곱", answer = "7" }
+        , { question = "여덟", answer = "8" }
+        , { question = "아홉", answer = "9" }
+        , { question = "열", answer = "10" }
         ]
     }
 
 
-koreanNumbers20_100 : ProblemSet
-koreanNumbers20_100 =
+questions20_100 : ProblemSet
+questions20_100 =
     { name = "Korean numbers 20-100"
     , problems =
-        [ { koreanNumber = "스물", numeral = 20 }
-        , { koreanNumber = "서른", numeral = 30 }
-        , { koreanNumber = "마흔", numeral = 40 }
-        , { koreanNumber = "쉰", numeral = 50 }
-        , { koreanNumber = "예순", numeral = 60 }
-        , { koreanNumber = "일흔", numeral = 70 }
-        , { koreanNumber = "여든", numeral = 80 }
-        , { koreanNumber = "아흔", numeral = 90 }
-        , { koreanNumber = "온", numeral = 100 }
+        [ { question = "스물", answer = "20" }
+        , { question = "서른", answer = "30" }
+        , { question = "마흔", answer = "40" }
+        , { question = "쉰", answer = "50" }
+        , { question = "예순", answer = "60" }
+        , { question = "일흔", answer = "70" }
+        , { question = "여든", answer = "80" }
+        , { question = "아흔", answer = "90" }
+        , { question = "온", answer = "100" }
         ]
     }
 
 
-sinoKoreanNumbers : ProblemSet
-sinoKoreanNumbers =
+sinoquestions : ProblemSet
+sinoquestions =
     { name = "Sino-Korean numbers 1-10"
     , problems =
-        [ { koreanNumber = "일", numeral = 1 }
-        , { koreanNumber = "이", numeral = 2 }
-        , { koreanNumber = "삼", numeral = 3 }
-        , { koreanNumber = "사", numeral = 4 }
-        , { koreanNumber = "오", numeral = 5 }
-        , { koreanNumber = "육", numeral = 6 }
-        , { koreanNumber = "칠", numeral = 7 }
-        , { koreanNumber = "팔", numeral = 8 }
-        , { koreanNumber = "구", numeral = 9 }
-        , { koreanNumber = "십", numeral = 10 }
+        [ { question = "일", answer = "1" }
+        , { question = "이", answer = "2" }
+        , { question = "삼", answer = "3" }
+        , { question = "사", answer = "4" }
+        , { question = "오", answer = "5" }
+        , { question = "육", answer = "6" }
+        , { question = "칠", answer = "7" }
+        , { question = "팔", answer = "8" }
+        , { question = "구", answer = "9" }
+        , { question = "십", answer = "10" }
         ]
     }
 
@@ -132,9 +132,9 @@ init =
             { selectedProblemSet = "korean"
             , guess = Nothing
             , allProblemSets =
-                Dict.fromList [ ( "korean", koreanNumbers ), ( "korean20-100", koreanNumbers20_100 ), ( "sino-korean", sinoKoreanNumbers ) ]
+                Dict.fromList [ ( "korean", questions ), ( "korean20-100", questions20_100 ), ( "sino-korean", sinoquestions ) ]
             , selectedProblem = Nothing
-            , otherProblems = koreanNumbers.problems
+            , otherProblems = questions.problems
             }
     in
         ( model, generateNext model )
